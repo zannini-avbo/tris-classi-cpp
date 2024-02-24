@@ -79,6 +79,7 @@ public:
             if (risultato != 0)
                 return risultato;
         }
+        return controlla_diagonali();
     }
 
 private:
@@ -119,7 +120,7 @@ private:
             return 1;
         if (acc_due == 3)
             return 2;
-        return controlla_diagonali(); // Chiamo il controllo sulle diagonali
+        return 0;
     }
 
     int controlla_diagonali() // @TODO: Manca l'implementazione
@@ -153,13 +154,18 @@ int main(int argc, char const *argv[])
             cout << "y: ";
             cin >> y;
 
-            mossa_valida = myTris.giocatore_uno(x, y); // @TODO: x e y sono invertiti
+            mossa_valida = myTris.giocatore_uno(y, x);
         } while (!mossa_valida);
 
         myTris.stampa_griglia();
 
         vincitore = myTris.controlla_vincitore();
         if(vincitore != 0)
+            break;
+        
+        // Controllo se ci sono delle mosse rimanenti nella griglia
+        mosse_totali++;    
+        if(mosse_totali >= 9)
             break;
 
         do
@@ -171,7 +177,7 @@ int main(int argc, char const *argv[])
             cout << "y: ";
             cin >> y;
 
-            mossa_valida = myTris.giocatore_due(x, y); // @TODO: x e y sono invertiti
+            mossa_valida = myTris.giocatore_due(y, x);
         } while (!mossa_valida);
 
         myTris.stampa_griglia();
@@ -179,8 +185,7 @@ int main(int argc, char const *argv[])
         vincitore = myTris.controlla_vincitore();
         if(vincitore != 0)
             break;
-
-        mosse_totali = mosse_totali + 2;
+        mosse_totali++;
     }
 
 
