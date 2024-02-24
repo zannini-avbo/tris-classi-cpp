@@ -36,6 +36,29 @@ public:
         }
     }
 
+    void stampa_griglia_avanzato()
+    {
+        cout << "+---+---+---+" << endl;
+        
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                cout << "|";
+                if(griglia[i][j] == 0)
+                    cout << "   ";
+                else if (griglia[i][j] == 1)
+                    cout << " X ";
+                else if (griglia[i][j] == 2)
+                    cout << " O ";
+                else
+                    cout << " E ";
+            }
+            cout << "|" << endl;
+            cout << "+---+---+---+" << endl;
+        }
+    }
+
     bool giocatore_uno(int x, int y)
     {
         if (x > 2 || x < 0)
@@ -136,7 +159,8 @@ int main(int argc, char const *argv[])
     myTris.reset_tabella();
 
     cout << "Stato iniziale!" << endl;
-    myTris.stampa_griglia();
+    // myTris.stampa_griglia();
+    myTris.stampa_griglia_avanzato();
 
     int x, y;
     bool mossa_valida;
@@ -157,7 +181,8 @@ int main(int argc, char const *argv[])
             mossa_valida = myTris.giocatore_uno(y, x);
         } while (!mossa_valida);
 
-        myTris.stampa_griglia();
+        //myTris.stampa_griglia();
+        myTris.stampa_griglia_avanzato();
 
         vincitore = myTris.controlla_vincitore();
         if(vincitore != 0)
@@ -180,7 +205,8 @@ int main(int argc, char const *argv[])
             mossa_valida = myTris.giocatore_due(y, x);
         } while (!mossa_valida);
 
-        myTris.stampa_griglia();
+        //myTris.stampa_griglia();
+        myTris.stampa_griglia_avanzato();
 
         vincitore = myTris.controlla_vincitore();
         if(vincitore != 0)
